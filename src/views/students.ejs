@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">CRUD</a>
+    </nav>
+
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-9">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Names</th>
+                        <th>First Lastname</th>
+                        <th>Second Lastname</th>
+                        <th>Birthday</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Mom</th>
+                        <th>Dad</th>
+                        <th>Bloodtype</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data){ %>
+                        <% for (var i=0; i<data.length; i++){ %>
+                                <tr>
+                                    <td><%= (i + 1) %></td>
+                                    <td><%= data[i].names %></td>
+                                    <td><%= data[i].lastname_2 %></td>
+                                    <td><%= data[i].lastname_2 %></td>
+                                    <td><%= data[i].birthday %></td>
+                                    <td><%= data[i].address %></td>
+                                    <td><%= data[i].phone %></td>
+                                    <td><%= data[i].mom_name %></td>
+                                    <td><%= data[i].dad_name %></td>
+                                    <td><%= data[i].bloodtype %></td>
+                                    <td>
+                                        <a href="/delete/<%= data[i].id %> " class="btn btn-danger">Delete</a>
+                                        <a href="/update/<% data[i].id %>" class="btn btn-info">Edit</a>
+                                    </td>
+                                </tr>
+                            <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <input type="text" name="names" placeholder="Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lastname_1" placeholder="First Lastname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lastname_2" placeholder="Second Lastname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="birthday" placeholder="Birthday" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="address" placeholder="Address" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="mom_name" placeholder="Mom" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="dad_name" placeholder="Dad" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="bloodtype" placeholder="Bloodtype" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

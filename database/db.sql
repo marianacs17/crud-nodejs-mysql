@@ -1,39 +1,39 @@
 -- creating the database
-CREATE DATABASE escuela_db;
+CREATE DATABASE school_db;
 
 -- using the database
-use escuela_db;
+use school_db;
 
 -- creating a table
-CREATE TABLE alumnos(
-    id_alumno INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nombres VARCHAR(30) NOT NULL,
-    apellido_1 VARCHAR(20) NOT NULL,
-    apellido_2 VARCHAR(20) NULL,
-    fecha_nacimiento DATE NOT NULL,
-    direccion VARCHAR(50) NOT NULL,
-    numero_telefonico VARCHAR(15) NOT NULL,
-    nombre_madre VARCHAR(40) NULL,
-    nombre_padre VARCHAR(40) NULL,
-    tipo_de_sangre VARCHAR(5) NOT NULL
+CREATE TABLE students(
+    id_student INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    names VARCHAR(30) NOT NULL,
+    lastname_1 VARCHAR(20) NOT NULL,
+    lastname_2 VARCHAR(20) NULL,
+    birthday DATE NOT NULL,
+    address VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    mom_name VARCHAR(40) NULL,
+    dad_name VARCHAR(40) NULL,
+    bloodtype VARCHAR(5) NOT NULL
 );
 
-CREATE TABLE profesores(
-    id_profesor INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nombres VARCHAR(50) NOT NULL,
-    apellido_1 VARCHAR(20) NOT NULL,
-    apellido_2 VARCHAR(20) NULL,
-    fecha_nacimiento DATE NOT NULL,
-    direccion VARCHAR(50) NOT NULL,
-    correo_electronico VARCHAR(50) NOT NULL,
+CREATE TABLE teachers(
+    id_teacher INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    names VARCHAR(50) NOT NULL,
+    lastname_1 VARCHAR(20) NOT NULL,
+    lastname_2 VARCHAR(20) NULL,
+    birthday DATE NOT NULL,
+    address VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     profesion VARCHAR(50) NOT NULL,
-    idiomas VARCHAR(40) NOT NULL,
-    turno VARCHAR(30) NOT NULL
+    languages VARCHAR(40) NOT NULL,
+    shift VARCHAR(30) NOT NULL
 );
 
 -- to show all tables
 SHOW TABLES;
 
 -- to describe tables
-describe alumnos;
-describe profesores;
+describe students;
+describe teachers;

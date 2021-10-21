@@ -7,7 +7,7 @@ const myConnection = require('express-myconnection');
 const app = express();
 
 // importing routes
-const alumnosRoutes = require('./routes/alumnos');
+const studentsRoutes = require('./routes/students');
 const { urlencoded } = require('express');
 
 //settings
@@ -24,12 +24,12 @@ app.use(myConnection(mysql,{
     user: 'root',
     password: 'root',
     port: 3306,
-    database: 'escuela_db'
+    database: 'school_db'
 }, 'single'));
 app.use(express.urlencoded({extended: false}));
 
 //routes
-app.use('/', alumnosRoutes);
+app.use('/', studentsRoutes);
 
 //static files
 app.use(express.static(path.join(__dirname, 'public')));

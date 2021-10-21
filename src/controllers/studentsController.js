@@ -2,12 +2,12 @@ const controller = {};
 
 controller.list  = async (req,res) =>{
     req.getConnection(async(err,conn) =>{
-        await conn.query('SELECT * FROM alumnos', (err, alumnos) => {
+        await conn.query('SELECT * FROM students', (err, students) => {
             if (err){
                 res.json(err);
             }
-            res.render('alumnos', {
-                data : alumnos
+            res.render('students', {
+                data : students
             });
         });
     });
@@ -16,7 +16,7 @@ controller.list  = async (req,res) =>{
 controller.save = async (req,res)=>{
     const data = req.body;
     req.getConnection(async(err,conn)=>{
-        await conn.query('INSERT INTO alumnos set ?', [data], (err,alumnos)=>{
+        await conn.query('INSERT INTO students set ?', [data], (err,students)=>{
             res.redirect('/');
         });
     });
@@ -25,9 +25,9 @@ controller.save = async (req,res)=>{
 controller.edit = async(req, res)=>{
     const {id} = req.params;
     req.getConnection(async(err,conn)=>{
-        await conn.query('SELECT * FROM alumnos WHERE id = ?',[id], (err,alumnos)=>{
-            res.render('alumnos_edit',{
-                data: alumnos[0]
+        await conn.query('SELECT * FROM students WHERE id = ?',[id], (err,students)=>{
+            res.render('students_edit',{
+                data: students[0]
             });
         });
     });
@@ -35,10 +35,10 @@ controller.edit = async(req, res)=>{
 
 controller.update = (req, res)=>{
     const {id} = req.params;
-    const newAlumno = req.body.newAlumno;
+    const newStudent = req.body.newStudent;
     req.getConnection((err,conn)=>{
-        conn.query('UPDATE alumnos SET ? WHERE id = ?',[newCustomer, id], (err,rows)=>{
-            res.redirect('/);')
+        conn.query('UPDATE students SET ? WHERE id = ?',[newStudent, id], (err,rows)=>{
+            res.redirect('/');
         })
     })
 }
@@ -46,7 +46,7 @@ controller.update = (req, res)=>{
 controller.delete = async (req,res)=>{
     const {id} = req.params;
     req.getConnection(async(err,conn) => {
-        await conn.query('DELETE FROM alumnos WHERE id = ?', [id], (err,alumnos)=>{
+        await conn.query('DELETE FROM students WHERE id = ?', [id], (err,students)=>{
             res.redirect('/');
         });
     });
