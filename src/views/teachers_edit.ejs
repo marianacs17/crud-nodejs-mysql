@@ -17,7 +17,7 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/update/<%= data.id_student %>" method="post">
+                        <form action="/update/<% data.id_teachers %>" method="post">
                             <div class="form-group">
                                 <input type="text" name="names" value="<% data.names %> " class="form-control">
                             </div>
@@ -34,16 +34,16 @@
                                 <input type="text" name="address" value="<% data.address %> " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="tel" name="phone" value="<% data.phone %> " class="form-control">
+                                <input type="tel" name="email" value="<% data.email %> " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="mom_name" value="<% data.mom_name %> " class="form-control">
+                                <input type="text" name="profesion" value="<% data.profesion %> " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="dad_name" value="<% data.dad_name %> " class="form-control">
+                                <input type="text" name="languages" value="<% data.languages %> " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="bloodtype" value="<% data.bloodtype %> " class="form-control">
+                                <input type="text" name="shift" value="<% data.shift %> " class="form-control">
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 Edit

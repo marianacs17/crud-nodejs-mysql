@@ -25,10 +25,10 @@
                         <th>Second Lastname</th>
                         <th>Birthday</th>
                         <th>Address</th>
-                        <th>Phone</th>
-                        <th>Mom</th>
-                        <th>Dad</th>
-                        <th>Bloodtype</th>
+                        <th>Email</th>
+                        <th>Profesion</th>
+                        <th>Languages</th>
+                        <th>Shift</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -42,13 +42,13 @@
                                     <td><%= data[i].lastname_2 %></td>
                                     <td><%= data[i].birthday %></td>
                                     <td><%= data[i].address %></td>
-                                    <td><%= data[i].phone %></td>
-                                    <td><%= data[i].mom_name %></td>
-                                    <td><%= data[i].dad_name %></td>
-                                    <td><%= data[i].bloodtype %></td>
+                                    <td><%= data[i].email %></td>
+                                    <td><%= data[i].profesion %></td>
+                                    <td><%= data[i].languages %></td>
+                                    <td><%= data[i].shift %></td>
                                     <td>
-                                        <a href="/delete/<%= data[i].id_student %> " class="btn btn-danger">Delete</a>
-                                        <a href="/update/<%= data[i].id_student %>" class="btn btn-info">Update</a>
+                                        <a href="/delete/<%= data[i].id_teachers %> " class="btn btn-danger">Delete</a>
+                                        <a href="/update/<% data[i].id_teachers %> " class="btn btn-info">Update</a>
                                     </td>
                                 </tr>
                             <% } %>
@@ -76,16 +76,16 @@
                             <input type="text" name="address" placeholder="Address" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Phone" class="form-control">
+                            <input type="tel" name="email" placeholder="Email" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="mom_name" placeholder="Mom" class="form-control">
+                            <input type="text" name="profesion" placeholder="Profesion" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="dad_name" placeholder="Dad" class="form-control">
+                            <input type="text" name="languages" placeholder="Languages" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="bloodtype" placeholder="Bloodtype" class="form-control">
+                            <input type="text" name="shift" placeholder="Shift" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Save
