@@ -33,8 +33,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% if (data){ %>
-                        <% for (var i=0; i<data.length; i++){ %>
+                    <%= if (data){ %>
+                        <%= for (var i=0; i<data.length; i++){ %>
                                 <tr>
                                     <td><%= data[i].id %></td>
                                     <td><%= data[i].names %></td>
