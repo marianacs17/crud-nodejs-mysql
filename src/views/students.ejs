@@ -36,7 +36,7 @@
                     <% if (data){ %>
                         <% for (var i=0; i<data.length; i++){ %>
                                 <tr>
-                                    <td><%= (i + 1) %></td>
+                                    <td><%= data[i].id %></td>
                                     <td><%= data[i].names %></td>
                                     <td><%= data[i].lastname1 %></td>
                                     <td><%= data[i].lastname2 %></td>
@@ -47,8 +47,8 @@
                                     <td><%= data[i].fathers_name %></td>
                                     <td><%= data[i].bloodtype %></td>
                                     <td>
-                                        <a href="/delete/<%= data[i].id %> " class="btn btn-danger">Delete</a>
-                                        <a href="/update/<%= data[i].id %>" class="btn btn-info">Update</a>
+                                        <a href="/studentsforms/delete/<%= data[i].id %> " class="btn btn-danger">Delete</a>
+                                        <a href="/studentsforms/update/<%= data[i].id %>" class="btn btn-info">Update</a>
                                     </td>
                                 </tr>
                             <% } %>
@@ -59,7 +59,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <form action="/add" method="post">
+                    <form action="/studentsforms/add" method="post">
                         <div class="form-group">
                             <input type="text" name="names" placeholder="Name" class="form-control">
                         </div>
@@ -70,13 +70,13 @@
                             <input type="text" name="lastname2" placeholder="Second Lastname" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="date" name="date_of_birth" placeholder="date_of_birth" class="form-control">
+                            <input type="date" name="date_of_birth" placeholder="Birthday" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="text" name="address" placeholder="Address" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone_number" placeholder="phone_number" class="form-control">
+                            <input type="number" name="phone_number" placeholder="Phone" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="text" name="mothers_name" placeholder="Mom" class="form-control">

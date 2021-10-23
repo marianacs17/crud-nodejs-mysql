@@ -48,8 +48,10 @@ app.get('/students', (req, res) => {
     req.getConnection((err, conn) => {
         if(err) throw err
         console.log(`connected as id ${conn.threadId}`)
-
-        conn.query('SELECT * from students', (err, rows) => {
+        const limit = 5;
+        const page = req.query.page;
+        const offset = (page - 1)*limit;
+        conn.query('SELECT * from students limit'+limit+'OFFSET'+offset, (err, rows) => {
 
             if(!err) {
                 res.send(rows)
