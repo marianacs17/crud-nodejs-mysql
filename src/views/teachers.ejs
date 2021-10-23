@@ -23,12 +23,12 @@
                         <th>Names</th>
                         <th>First Lastname</th>
                         <th>Second Lastname</th>
-                        <th>Birthday</th>
+                        <th>date_of_birth</th>
                         <th>Address</th>
                         <th>Email</th>
-                        <th>Profesion</th>
+                        <th>profession</th>
                         <th>Languages</th>
-                        <th>Shift</th>
+                        <th>work_shift</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -38,17 +38,17 @@
                                 <tr>
                                     <td><%= (i + 1) %></td>
                                     <td><%= data[i].names %></td>
-                                    <td><%= data[i].lastname_1 %></td>
-                                    <td><%= data[i].lastname_2 %></td>
-                                    <td><%= data[i].birthday %></td>
+                                    <td><%= data[i].lastname1 %></td>
+                                    <td><%= data[i].lastname2 %></td>
+                                    <td><%= data[i].date_of_birth %></td>
                                     <td><%= data[i].address %></td>
                                     <td><%= data[i].email %></td>
-                                    <td><%= data[i].profesion %></td>
+                                    <td><%= data[i].profession %></td>
                                     <td><%= data[i].languages %></td>
-                                    <td><%= data[i].shift %></td>
+                                    <td><%= data[i].work_shift %></td>
                                     <td>
-                                        <a href="/delete/<%= data[i].id_teachers %> " class="btn btn-danger">Delete</a>
-                                        <a href="/update/<% data[i].id_teachers %> " class="btn btn-info">Update</a>
+                                        <a href="/delete/<%= data[i].id %> " class="btn btn-danger">Delete</a>
+                                        <a href="/update/<% data[i].id %> " class="btn btn-info">Update</a>
                                     </td>
                                 </tr>
                             <% } %>
@@ -64,13 +64,13 @@
                             <input type="text" name="names" placeholder="Name" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lastname_1" placeholder="First Lastname" class="form-control">
+                            <input type="text" name="lastname1" placeholder="First Lastname" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lastname_2" placeholder="Second Lastname" class="form-control">
+                            <input type="text" name="lastname2" placeholder="Second Lastname" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="date" name="birthday" placeholder="Birthday" class="form-control">
+                            <input type="date" name="date_of_birth" placeholder="date_of_birth" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="text" name="address" placeholder="Address" class="form-control">
@@ -79,13 +79,13 @@
                             <input type="tel" name="email" placeholder="Email" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="profesion" placeholder="Profesion" class="form-control">
+                            <input type="text" name="profession" placeholder="profession" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="text" name="languages" placeholder="Languages" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="shift" placeholder="Shift" class="form-control">
+                            <input type="text" name="work_shift" placeholder="work_shift" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Save

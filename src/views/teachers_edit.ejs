@@ -17,18 +17,18 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/update/<% data.id_teachers %>" method="post">
+                        <form action="/update/<% data.id %>" method="post">
                             <div class="form-group">
                                 <input type="text" name="names" value="<% data.names %> " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="lastname_1" value="<% data.lastname_1 %>" class="form-control" class="form-control">
+                                <input type="text" name="lastname1" value="<% data.lastname1 %>" class="form-control" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="lastname_2 value="<% data.lastname_2 %>" " class="form-control">
+                                <input type="text" name="lastname2 value="<% data.lastname2 %>" " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="date" name="birthday" value="<% data.birthday %> " class="form-control">
+                                <input type="date" name="date_of_birth" value="<% data.date_of_birth %> " class="form-control">
                             </div>
                             <div class="form-group"> 
                                 <input type="text" name="address" value="<% data.address %> " class="form-control">
@@ -37,13 +37,13 @@
                                 <input type="tel" name="email" value="<% data.email %> " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="profesion" value="<% data.profesion %> " class="form-control">
+                                <input type="text" name="profession" value="<% data.profession %> " class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="text" name="languages" value="<% data.languages %> " class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="shift" value="<% data.shift %> " class="form-control">
+                                <input type="text" name="work_shift" value="<% data.work_shift %> " class="form-control">
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 Edit

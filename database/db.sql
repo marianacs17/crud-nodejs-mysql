@@ -6,29 +6,29 @@ use school_db;
 
 -- creating a table
 CREATE TABLE students(
-    id_student INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     names VARCHAR(30) NOT NULL,
-    lastname_1 VARCHAR(20) NOT NULL,
-    lastname_2 VARCHAR(20) NULL,
-    birthday DATE NOT NULL,
+    lastname1 VARCHAR(20) NOT NULL,
+    lastname2 VARCHAR(20) NULL,
+    date_of_birth DATE NOT NULL,
     address VARCHAR(50) NOT NULL,
-    phone VARCHAR(15) NOT NULL,
-    mom_name VARCHAR(40) NULL,
-    dad_name VARCHAR(40) NULL,
+    phone_number VARCHAR(15) NOT NULL,
+    mothers_name VARCHAR(40) NULL,
+    fathers_name VARCHAR(40) NULL,
     bloodtype VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE teachers(
-    id_teacher INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     names VARCHAR(50) NOT NULL,
-    lastname_1 VARCHAR(20) NOT NULL,
-    lastname_2 VARCHAR(20) NULL,
-    birthday DATE NOT NULL,
+    lastname1 VARCHAR(20) NOT NULL,
+    lastname2 VARCHAR(20) NULL,
+    date_of_birth DATE NOT NULL,
     address VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    profesion VARCHAR(50) NOT NULL,
+    profession VARCHAR(50) NOT NULL,
     languages VARCHAR(40) NOT NULL,
-    shift VARCHAR(30) NOT NULL
+    work_shift VARCHAR(30) NOT NULL
 );
 
 -- to show all tables

@@ -1,6 +1,8 @@
-const controller = {};
+const studentsController = {};
+const express = require('express');
+const app = express();
 
-controller.list  = async (req,res) =>{
+studentsController.list  = async (req,res) =>{
     req.getConnection(async(err,conn) =>{
         await conn.query('SELECT * FROM students', (err, students) => {
             if (err){
@@ -13,19 +15,19 @@ controller.list  = async (req,res) =>{
     });
 };
 
-controller.save = async (req,res)=>{
+studentsController.save = async (req,res)=>{
     const data = req.body;
     req.getConnection(async(err,conn)=>{
         await conn.query('INSERT INTO students set ?', [data], (err,students)=>{
-            res.redirect('/');
+            res.redirect('/studentsforms');
         });
     });
 };
 
-controller.edit = async(req, res)=>{
+studentsController.edit = async(req, res)=>{
     const {id} = req.params;
     req.getConnection(async(err,conn)=>{
-        await conn.query('SELECT * FROM students WHERE id_student = ?',[id], (err,students)=>{
+        await conn.query('SELECT * FROM students WHERE id = ?',[id], (err,students)=>{
             res.render('students_edit',{
                 data: students[0]
             });
@@ -34,23 +36,27 @@ controller.edit = async(req, res)=>{
     });
 };
 
-controller.update = async (req, res)=>{
+studentsController.update = async (req, res)=>{
     const {id} = req.params;
     const newStudent = req.body.newStudent;
     req.getConnection(async(err,conn)=>{
-        await conn.query('UPDATE students set ? WHERE id_student = ?',[newStudent, id], (err,rows)=>{
-            res.redirect('/');
+        await conn.query('UPDATE students set ? WHERE id = ?',[newStudent, id], (err,rows)=>{
+            res.redirect('/studentsforms');
         });
     });
 };
 
-controller.delete = async (req,res)=>{
+studentsController.delete = async (req,res)=>{
     const {id} = req.params;
     req.getConnection(async(err,conn) => {
-        await conn.query('DELETE FROM students WHERE id_student = ?', [id], (err,rows)=>{
-            res.redirect('/');
+        await conn.query('DELETE FROM students WHERE id = ?', [id], (err,rows)=>{
+            res.redirect('/studentsforms');
         });
     });
 };
 
-module.exports = controller;
+///////////////////////////////
+
+
+
+module.exports = studentsController;

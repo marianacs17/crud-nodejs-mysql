@@ -1,6 +1,6 @@
-const controller = {};
+const teachersController = {};
 
-controller.list  = async (req,res) =>{
+teachersController.list  = async (req,res) =>{
     req.getConnection(async(err,conn) =>{
         await conn.query('SELECT * FROM teachers', (err, teachers) => {
             if (err){
@@ -13,19 +13,19 @@ controller.list  = async (req,res) =>{
     });
 };
 
-controller.save = async (req,res)=>{
+teachersController.save = async (req,res)=>{
     const data = req.body;
     req.getConnection(async(err,conn)=>{
         await conn.query('INSERT INTO teachers set ?', [data], (err,teachers)=>{
-            res.redirect('/');
+            res.redirect('/teachersforms');
         });
     });
 };
 
-controller.edit = async(req, res)=>{
+teachersController.edit = async(req, res)=>{
     const {id} = req.params;
     req.getConnection(async(err,conn)=>{
-        await conn.query('SELECT * FROM teachers WHERE id_teachers = ?',[id], (err,teachers)=>{
+        await conn.query('SELECT * FROM teachers WHERE id = ?',[id], (err,teachers)=>{
             res.render('teachers_edit',{
                 data: teachers[0]
             });
@@ -33,23 +33,23 @@ controller.edit = async(req, res)=>{
     });
 };
 
-controller.update = async (req, res)=>{
+teachersController.update = async (req, res)=>{
     const {id} = req.params;
     const newTeacher = req.body.newTeacher;
     req.getConnection(async(err,conn)=>{
-        await conn.query('UPDATE teachers set ? WHERE id_teachers = ?',[newTeacher, id], (err,rows)=>{
-            res.redirect('/');
+        await conn.query('UPDATE teachers set ? WHERE id = ?',[newTeacher, id], (err,rows)=>{
+            res.redirect('/teachersforms');
         });
     });
 };
 
-controller.delete = async (req,res)=>{
+teachersController.delete = async (req,res)=>{
     const {id} = req.params;
     req.getConnection(async(err,conn) => {
-        await conn.query('DELETE FROM teachers WHERE id_teachers = ?', [id], (err,rows)=>{
-            res.redirect('/');
+        await conn.query('DELETE FROM teachers WHERE id = ?', [id], (err,rows)=>{
+            res.redirect('/teachersforms');
         });
     });
 };
 
-module.exports = controller;
+module.exports = teachersController;
