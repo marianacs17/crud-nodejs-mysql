@@ -47,11 +47,20 @@ app.get('/students', (req, res) => {
 
     req.getConnection((err, conn) => {
         if(err) throw err
-        console.log(`connected as id ${conn.threadId}`)
-        const limit = 5;
-        const page = req.query.page;
-        const offset = (page - 1)*limit;
-        conn.query('SELECT * from students limit'+limit+'OFFSET'+offset, (err, rows) => {
+        let limit = 3;  //elements per page
+        let page = 1;
+        let offset = 0; 
+        if (req.query.limit ){
+            limit = req.query.limit;
+        }
+        if (req.query.page){
+            page = req.query.page;
+        }
+        offset = (page-1)*limit;
+        console.log(`connected as id ${conn.threadId}`);
+        const query = 'SELECT * from students limit ' + limit + ' OFFSET ' + offset;
+        console.log(query);
+        conn.query(query, (err, rows) => {
 
             if(!err) {
                 res.send(rows)
@@ -151,9 +160,20 @@ app.get('/teachers', (req, res) => {
 
     req.getConnection((err, conn) => {
         if(err) throw err
-        console.log(`connected as id ${conn.threadId}`)
-
-        conn.query('SELECT * from teachers', (err, rows) => {
+        let limit = 3;  //elements per page
+        let page = 1;
+        let offset = 0; 
+        if (req.query.limit ){
+            limit = req.query.limit;
+        }
+        if (req.query.page){
+            page = req.query.page;
+        }
+        offset = (page-1)*limit;
+        console.log(`connected as id ${conn.threadId}`);
+        const query = 'SELECT * from teachers limit ' + limit + ' OFFSET ' + offset;
+        console.log(query);
+        conn.query(query, (err, rows) => {
 
             if(!err) {
                 res.send(rows)
@@ -163,6 +183,7 @@ app.get('/teachers', (req, res) => {
         })
     })
 })
+
 
 
 // Get "teachers" by id
