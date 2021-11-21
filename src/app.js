@@ -321,6 +321,33 @@ app.put('/teachers/modify/:id', (req, res) => {
 	});
 });
 
+//connection with Ariel and Mario database api
+app.get('/semester/:semester_id/students',(req,res)=> {
+    const URL = `https://app-flask-mysql.herokuapp.com/semesterstudent/getstudentsof/ ${req.params.id}`
+    axios.get(URL)
+        .then(function(response){
+            console.log(response.data)
+            res.send(response.data)
+        })
+        .catch(function(error){
+            console.log(error);
+            res.send(error);    
+        });
+})
+
+app.get('/student/:student_id/semesters',(req,res)=> {
+    const URL = `https://app-flask-mysql.herokuapp.com/semesterstudent/getsemsof/ ${req.params.id}`
+    axios.get(URL)
+        .then(function(response){
+            console.log(response.data)
+            res.send(response.data)
+        })
+        .catch(function(error){
+            console.log(error);
+            res.send(error);    
+        });
+})
+
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
 
