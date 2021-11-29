@@ -38,8 +38,8 @@ studentsController.edit = async(req, res)=>{
 
 studentsController.update = async (req, res)=>{
     const {id} = req.params;
-    const {names, lastname1, lastname2, date_of_birth, address, phone_number, mothers_name, fathers_name, bloodtype} = req.body;
-    const newStudent = {names, lastname1, lastname2, date_of_birth, address, phone_number, mothers_name, fathers_name, bloodtype};
+    const {names, lastname1, lastname2, date_of_birth, address, phone_number, mothers_name, fathers_name, bloodtype, career} = req.body;
+    const newStudent = {names, lastname1, lastname2, date_of_birth, address, phone_number, mothers_name, fathers_name, bloodtype, career};
     console.log(newStudent);
     req.getConnection(async(err,conn)=>{
         await conn.query('UPDATE students set ? WHERE id = ?',[newStudent, id], (err,rows)=>{

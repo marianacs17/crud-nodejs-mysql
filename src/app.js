@@ -155,6 +155,7 @@ app.put('/students/modify/:id', (req, res) => {
 			mothers_name,
 			fathers_name,
 			bloodtype,
+			career,
 		} = req.body;
 		const newStudent = {
 			names,
@@ -166,6 +167,7 @@ app.put('/students/modify/:id', (req, res) => {
 			mothers_name,
 			fathers_name,
 			bloodtype,
+			career,
 		};
 
 		conn.query(

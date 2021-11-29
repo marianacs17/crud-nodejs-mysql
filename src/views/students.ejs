@@ -29,6 +29,7 @@
                         <th>Mom</th>
                         <th>Dad</th>
                         <th>bloodtype</th>
+                        <th>career</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -46,6 +47,7 @@
                                     <td><%= data[i].mothers_name %></td>
                                     <td><%= data[i].fathers_name %></td>
                                     <td><%= data[i].bloodtype %></td>
+                                    <td><%= data[i].career %></td>
                                     <td>
                                         <a href="/studentsforms/delete/<%= data[i].id %> " class="btn btn-danger">Delete</a>
                                         <a href="/studentsforms/update/<%= data[i].id %>" class="btn btn-info">Update</a>
@@ -86,6 +88,9 @@
                         </div>
                         <div class="form-group">
                             <input type="text" name="bloodtype" placeholder="bloodtype" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="career" placeholder="career" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Save
