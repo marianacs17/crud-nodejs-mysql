@@ -217,15 +217,15 @@ app.get('/teachers', (req, res) => {
 	});
 });
 
-// Get "teachers" by id
-app.get('/teachers/:id', (req, res) => {
+// Get "teachers" by teacher_id
+app.get('/teachers/:teacher_id', (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
 
 		conn.query(
-			'SELECT * from teachers WHERE id = ?',
-			[req.params.id],
+			'SELECT * from teachers WHERE teacher_id = ?',
+			[req.params.teacher_id],
 			(err, rows) => {
 				if (!err) {
 					res.send(rows);
@@ -327,7 +327,7 @@ app.put('/teachers/modify/:id', (req, res) => {
 
 //-----------------------------------------------------------------------------------------------------------------
 
-//Traer los estudiantes con la misma calificación
+//*Traer los estudiantes con la misma calificación
 app.get('/grades/:total_grade/students', (req, res) => {
 	const { total_grade } = req.params;
 	const URL = `https://api-nodejs-mongod.herokuapp.com/grades/total/${total_grade}`;
@@ -357,7 +357,7 @@ app.get('/grades/:total_grade/students', (req, res) => {
 		});
 });
 
-//Traer los profesores de una materia
+//*Traer los profesores de una materia
 app.get('/subject/:subject_name/teachers', (req, res) => {
 	const { subject_name } = req.params;
 	const URL = `https://api-nodejs-mongod.herokuapp.com/subjects/name/${subject_name}`;
@@ -394,24 +394,29 @@ app.get('/semester/:semester_num/:career_code/students', (req, res) => {
 	const URL = `https://app-flask-mysql.herokuapp.com/career/${career_code}`;
 	const URL2 = `https://app-flask-mysql.herokuapp.com/semester/${semester_num}`;
 	const URL3 = 'https://crud-nodejs-1.herokuapp.com/allstudents?limit=30';
-	const students = [];
+	let students = [];
+	const semester = [];
 	axios.get(URL).then(function (response) {
-		career = response.data.data;
+		career = response.data;
 		axios.get(URL2).then(function (response) {
-			semester = response.data.data;
-			for (let i = 0; i < semester.length; i++) {
+			allSemester = response.data;
+
+			for (let i = 0; i < allSemester.length; i++) {
 				if (
-					semester[i].career_code == career_code &&
-					semester[i].semester_num == semester_num
+					allSemester[i].career_code == career_code &&
+					allSemester[i].semester_num == semester_num
 				) {
-					semester.push(semester[i]);
+					semester.push(allSemester[i]);
 				}
 			}
 			axios.get(URL3).then(function (response) {
-				students = response.data;
-				for (let i = 0; i < students.length; i++) {
-					if (students[i].semester_num == semester_num) {
-						students.push(students[i]);
+				allStudents = response.data;
+				for (let i = 0; i < allStudents.length; i++) {
+					if (
+						allStudents[i].semester_num == semester_num &&
+						allStudents[i].career == career_code
+					) {
+						students.push(allStudents[i]);
 					}
 				}
 				const relation = { career, semester, students };
@@ -423,20 +428,20 @@ app.get('/semester/:semester_num/:career_code/students', (req, res) => {
 
 //*Traer los alumnos de una carrera
 app.get('/career/:career_code/students', (req, res) => {
-	const { semester_num, career_code } = req.params;
+	const { career_code } = req.params;
 	const URL = `https://app-flask-mysql.herokuapp.com/career/${career_code}`;
 	const URL2 = 'https://crud-nodejs-1.herokuapp.com/allstudents?limit=30';
-	const students = [];
+	let students = [];
 	axios.get(URL).then(function (response) {
-		career = response.data.data;
+		career = response.data;
 		axios.get(URL2).then(function (response) {
-			students = response.data;
-			for (let i = 0; i < students.length; i++) {
-				if (students[i].semester_num == semester_num) {
-					students.push(students[i]);
+			allStudents = response.data;
+			for (let i = 0; i < allStudents.length; i++) {
+				if (allStudents[i].career == career_code) {
+					students.push(allStudents[i]);
 				}
 			}
-			const relation = { career, semester, students };
+			const relation = { career, students };
 			res.send(relation);
 		});
 	});
