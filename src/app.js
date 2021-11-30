@@ -330,7 +330,7 @@ app.put('/teachers/modify/:id', (req, res) => {
 //Traer los estudiantes con la misma calificación
 app.get('/grades/:total_grade/students', (req, res) => {
 	const { total_grade } = req.params;
-	const URL = `http://localhost:3000/grades/total/${total_grade}`;
+	const URL = `https://api-nodejs-mongod.herokuapp.com/grades/total/${total_grade}`;
 	const URL2 = 'https://crud-nodejs-1.herokuapp.com/students?limit=30';
 	const students = [];
 	axios
@@ -360,7 +360,7 @@ app.get('/grades/:total_grade/students', (req, res) => {
 //Traer los profesores de una materia
 app.get('/subject/:subject_name/teachers', (req, res) => {
 	const { subject_name } = req.params;
-	const URL = `http://localhost:3000/subjects/name/${subject_name}`;
+	const URL = `https://api-nodejs-mongod.herokuapp.com/subjects/name/${subject_name}`;
 	const URL2 = 'https://crud-nodejs-1.herokuapp.com/teachers?limit=30';
 	let subjects = [];
 	const allTeachers = [];
