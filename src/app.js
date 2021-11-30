@@ -52,7 +52,7 @@ app.use('/', indexRoutes);
 //-----------------------
 //routes for json
 //Get students
-app.get('/students/subject', (req, res) => {
+app.get('/allstudents', (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		let limit = 3; //elements per page
@@ -331,7 +331,7 @@ app.put('/teachers/modify/:id', (req, res) => {
 app.get('/grades/:total_grade/students', (req, res) => {
 	const { total_grade } = req.params;
 	const URL = `https://api-nodejs-mongod.herokuapp.com/grades/total/${total_grade}`;
-	const URL2 = 'https://crud-nodejs-1.herokuapp.com/students?limit=30';
+	const URL2 = 'https://crud-nodejs-1.herokuapp.com/allstudents?limit=30';
 	const students = [];
 	axios
 		.get(URL)
@@ -393,7 +393,7 @@ app.get('/semester/:semester_num/:career_code/students', (req, res) => {
 	const { semester_num, career_code } = req.params;
 	const URL = `https://app-flask-mysql.herokuapp.com/career/${career_code}`;
 	const URL2 = `https://app-flask-mysql.herokuapp.com/semester/${semester_num}`;
-	const URL3 = 'https://crud-nodejs-1.herokuapp.com/students?limit=30';
+	const URL3 = 'https://crud-nodejs-1.herokuapp.com/allstudents?limit=30';
 	const students = [];
 	axios.get(URL).then(function (response) {
 		career = response.data.data;
@@ -425,7 +425,7 @@ app.get('/semester/:semester_num/:career_code/students', (req, res) => {
 app.get('/career/:career_code/students', (req, res) => {
 	const { semester_num, career_code } = req.params;
 	const URL = `https://app-flask-mysql.herokuapp.com/career/${career_code}`;
-	const URL2 = 'https://crud-nodejs-1.herokuapp.com/students?limit=30';
+	const URL2 = 'https://crud-nodejs-1.herokuapp.com/allstudents?limit=30';
 	const students = [];
 	axios.get(URL).then(function (response) {
 		career = response.data.data;
