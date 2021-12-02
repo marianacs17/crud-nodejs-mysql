@@ -399,7 +399,8 @@ app.get('/semester/:semester_num/:career_code/students', cors(), (req, res) => {
 
 			for (let i = 0; i < allSemester.length; i++) {
 				if (
-					allSemester[i].career_code == career_code &&
+					allSemester[i].career_code.toLowerCase() ==
+						career_code.toLowerCase() &&
 					allSemester[i].semester_num == semester_num
 				) {
 					semester.push(allSemester[i]);
@@ -410,7 +411,8 @@ app.get('/semester/:semester_num/:career_code/students', cors(), (req, res) => {
 				for (let i = 0; i < allStudents.length; i++) {
 					if (
 						allStudents[i].semester_num == semester_num &&
-						allStudents[i].career == career_code
+						allStudents[i].career.toLowerCase() ==
+							career_code.toLowerCase()
 					) {
 						students.push(allStudents[i]);
 					}
@@ -433,7 +435,9 @@ app.get('/career/:career_code/students', cors(), (req, res) => {
 		axios.get(URL2).then(function (response) {
 			allStudents = response.data;
 			for (let i = 0; i < allStudents.length; i++) {
-				if (allStudents[i].career == career_code) {
+				if (
+					allStudents[i].career.toLowerCase() == career_code.toLowerCase()
+				) {
 					students.push(allStudents[i]);
 				}
 			}
