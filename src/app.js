@@ -9,11 +9,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(
-	cors({
-		origin: 'https://crud-nodejs-1.herokuapp.com',
-	})
-);
+app.use(cors());
 
 // importing routes
 const studentsRoutes = require('./routes/students');
@@ -52,7 +48,7 @@ app.use('/', indexRoutes);
 //-----------------------
 //routes for json
 //Get students
-app.get('/allstudents', (req, res) => {
+app.get('/allstudents', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		let limit = 3; //elements per page
@@ -80,7 +76,7 @@ app.get('/allstudents', (req, res) => {
 });
 
 // Get "students" by student_id
-app.get('/students/:student_id', (req, res) => {
+app.get('/students/:student_id', cors(), (req, res) => {
 	const { student_id } = req.params;
 	req.getConnection((err, conn) => {
 		if (err) throw err;
@@ -101,7 +97,7 @@ app.get('/students/:student_id', (req, res) => {
 });
 
 // Delete a record
-app.delete('/students/del/:id', (req, res) => {
+app.delete('/students/del/:id', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
@@ -123,7 +119,7 @@ app.delete('/students/del/:id', (req, res) => {
 });
 
 // Add a record
-app.post('/students/add', (req, res) => {
+app.post('/students/add', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
@@ -141,7 +137,7 @@ app.post('/students/add', (req, res) => {
 });
 
 // update a record
-app.put('/students/modify/:id', (req, res) => {
+app.put('/students/modify/:id', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
@@ -190,7 +186,7 @@ app.put('/students/modify/:id', (req, res) => {
 
 //--------------------------------------
 // Get "teachers"
-app.get('/teachers', (req, res) => {
+app.get('/teachers', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		let limit = 3; //elements per page
@@ -218,7 +214,7 @@ app.get('/teachers', (req, res) => {
 });
 
 // Get "teachers" by teacher_id
-app.get('/teachers/:teacher_id', (req, res) => {
+app.get('/teachers/:teacher_id', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
@@ -238,7 +234,7 @@ app.get('/teachers/:teacher_id', (req, res) => {
 });
 
 // Delete a record
-app.delete('/teachers/del/:id', (req, res) => {
+app.delete('/teachers/del/:id', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
@@ -260,7 +256,7 @@ app.delete('/teachers/del/:id', (req, res) => {
 });
 
 // Add a record
-app.post('/teachers/add', (req, res) => {
+app.post('/teachers/add', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
@@ -280,7 +276,7 @@ app.post('/teachers/add', (req, res) => {
 });
 
 // update a record
-app.put('/teachers/modify/:id', (req, res) => {
+app.put('/teachers/modify/:id', cors(), (req, res) => {
 	req.getConnection((err, conn) => {
 		if (err) throw err;
 		console.log(`connected as id ${conn.threadId}`);
@@ -328,7 +324,7 @@ app.put('/teachers/modify/:id', (req, res) => {
 //-----------------------------------------------------------------------------------------------------------------
 
 //*Traer los estudiantes con la misma calificación
-app.get('/grades/:total_grade/students', (req, res) => {
+app.get('/grades/:total_grade/students', cors(), (req, res) => {
 	const { total_grade } = req.params;
 	const URL = `https://api-nodejs-mongod.herokuapp.com/grades/total/${total_grade}`;
 	const URL2 = 'https://crud-nodejs-1.herokuapp.com/allstudents?limit=30';
@@ -358,7 +354,7 @@ app.get('/grades/:total_grade/students', (req, res) => {
 });
 
 //*Traer los profesores de una materia
-app.get('/subject/:subject_name/teachers', (req, res) => {
+app.get('/subject/:subject_name/teachers', cors(), (req, res) => {
 	const { subject_name } = req.params;
 	const URL = `https://api-nodejs-mongod.herokuapp.com/subjects/name/${subject_name}`;
 	const URL2 = 'https://crud-nodejs-1.herokuapp.com/teachers?limit=30';
@@ -389,7 +385,7 @@ app.get('/subject/:subject_name/teachers', (req, res) => {
 });
 
 //*Traer los alumnos de una carrera en un semestre
-app.get('/semester/:semester_num/:career_code/students', (req, res) => {
+app.get('/semester/:semester_num/:career_code/students', cors(), (req, res) => {
 	const { semester_num, career_code } = req.params;
 	const URL = `https://app-flask-mysql.herokuapp.com/career/${career_code}`;
 	const URL2 = `https://app-flask-mysql.herokuapp.com/semester/${semester_num}`;
@@ -427,7 +423,7 @@ app.get('/semester/:semester_num/:career_code/students', (req, res) => {
 });
 
 //*Traer los alumnos de una carrera
-app.get('/career/:career_code/students', (req, res) => {
+app.get('/career/:career_code/students', cors(), (req, res) => {
 	const { career_code } = req.params;
 	const URL = `https://app-flask-mysql.herokuapp.com/career/${career_code}`;
 	const URL2 = 'https://crud-nodejs-1.herokuapp.com/allstudents?limit=30';
